@@ -1,12 +1,15 @@
-import "./App.css";
-import AppRoutes from "./routes/AppRoutes";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Pokemon from "./pages/Pokemon";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <AppRoutes />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pokemon" element={<Pokemon />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
