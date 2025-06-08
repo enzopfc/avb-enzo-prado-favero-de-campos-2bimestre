@@ -33,16 +33,24 @@ export default function Pokemon() {
       <h1 className="text-5xl md:text-7xl font-extrabold my-10 text-yellow-400 font-[Montserrat] drop-shadow-lg select-none text-center">
         Pokédex
       </h1>
-      <Link
-        to="/"
-        className="mb-10 px-10 py-5 bg-gradient-to-br from-blue-600 to-blue-500 text-3xl font-extrabold rounded-2xl shadow-lg transition-all duration-200 hover:scale-105 hover:from-blue-700 hover:to-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500"
-        style={{
-          color: "#facc15", // amarelo igual ao título
-          textShadow: "0 1px 12px #000, 0 1px 1px #000"
-        }}
-      >
-        Voltar para Home
-      </Link>
+      <div className="flex flex-row gap-8 mb-8">
+        <Link
+          to="/"
+          className="px-10 py-5 bg-gradient-to-br from-blue-600 to-blue-500 text-yellow-400 text-3xl font-extrabold rounded-2xl shadow-lg transition-all duration-200 hover:scale-105 hover:from-blue-700 hover:to-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500"
+          style={{
+            color: "#facc15",
+            textShadow: "0 1px 12px #000, 0 1px 1px #000"
+          }}
+        >
+          Voltar para Home
+        </Link>
+        <Link
+          to="/favoritos"
+          className="px-10 py-5 bg-gradient-to-br from-yellow-400 to-yellow-300 text-blue-900 text-3xl font-extrabold rounded-2xl shadow-lg transition-all duration-200 hover:scale-105 hover:from-yellow-500 hover:to-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-400"
+        >
+          Ver Favoritos ⭐
+        </Link>
+      </div>
       {loading ? (
         <p className="text-white text-xl mt-24 animate-pulse">Carregando Pokémons...</p>
       ) : (

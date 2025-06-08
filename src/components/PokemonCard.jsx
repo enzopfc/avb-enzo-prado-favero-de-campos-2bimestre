@@ -1,7 +1,8 @@
 import React from "react";
+import { useFavorites } from "../context/FavoritesContext";
 
-// Fonte bonita opcional: adicione em index.html se quiser <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 export default function PokemonCard({ pokemon }) {
+  const { toggleFavorite, isFavorite } = useFavorites();
   // Cores de borda por tipo
   const type = pokemon.types[0]?.type.name;
   const typeColors = {
@@ -28,7 +29,20 @@ export default function PokemonCard({ pokemon }) {
   const borderColor = typeColors[type] || typeColors.default;
 
   return (
-    <div className={`bg-zinc-900 rounded-2xl border-4 ${borderColor} shadow-2xl transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-yellow-200/20 w-60 mx-auto flex flex-col items-center cursor-pointer`}>
+    <div className={`bg-zinc-900 rounded-2xl border-4 ${borderColor} shadow-2xl transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-yellow-200/20 w-60 mx-auto flex flex-col items-center cursor-pointer relative`}>
+      <button
+        className={`absolute top-3 left-3 text-3xl focus:outline-none ${
+          isFavorite(pokemon.id) ? "text-yellow-300" : "text-gray-400"
+        }`}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleFavorite(pokemon);
+        }}
+        aria-label="Favoritar"
+        title={isFavorite(pokemon.id) ? "Desfavoritar" : "Favoritar"}
+      >
+        {isFavorite(pokemon.id) ? "★" : "☆"}
+      </button>
       <div className="w-full flex justify-end pr-2 pt-2 select-none">
         <span className="text-xs text-gray-400 font-bold">#{pokemon.id}</span>
       </div>
